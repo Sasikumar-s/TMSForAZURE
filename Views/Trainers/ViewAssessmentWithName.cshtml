@@ -1,0 +1,76 @@
+﻿@model IEnumerable<TMSClient.Models.ForeignKeyMapping.AssessmentBatch>
+
+@{
+    ViewData["Title"] = "ViewAssessmentWithName";
+    Layout = "~/Views/Shared/_Trainer.cshtml";
+}
+
+<div class="text-center">
+    <h3 align="center" style="font-size:30px">Distribute your Question paper and view all uploaded answer by trainee's </h3>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AssessmentID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssessmentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Duration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartingTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndingTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Question)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BatchName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssessmentID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssessmentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartingTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndingTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Question)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BatchName)
+            </td>
+             <td>
+                <div>@Html.ActionLink("Upload Question", "Edit", "Assessments",new { id=item.AssessmentID},new { @class = "btn btn-success btn-sm" }) </div>  
+                <div style="margin-top:10px">@Html.ActionLink("View Ansewers", "Index","Answers", new {id=item.AssessmentID},new { @class = "btn btn-warning btn-sm" }) </div>
+                <div style="margin-top:10px">@Html.ActionLink("Trainee's Scores", "ViewAssessmentScores", new { id=item.AssessmentID },new{@class="btn btn-danger"})</div>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

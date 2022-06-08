@@ -1,0 +1,51 @@
+﻿@model IEnumerable<TMSClient.Models.ForeignKeyMapping.AnswerWithName>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Trainer.cshtml";
+}
+
+
+<div class="text-center">
+    <h3 align="center" style="font-size:30px">Uploaded answer sheets </h3>
+</div>
+<hr />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AnswerID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TraineeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssessmentName)
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnswerID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TraineeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssessmentName)
+            </td>
+            
+            <td>
+                @Html.ActionLink("Download", "DownloadAnswer", new { fileName=item.AnswerPath }) |
+                @Html.ActionLink("Upload Scores", "UploadScore","Assessments", new { id=item.AssessmentID,traineeID=item.TraineeID})
+                
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
